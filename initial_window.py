@@ -63,9 +63,12 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         self.files[fileKey], _ = QtWidgets.QFileDialog.getOpenFileName(self,
-                                                'Load function csv',
+                                                'Load function:',
                                                 '',
-                                                'All Files (*);;CSV files (*.csv)', options=options)
+                                                '''
+                                                Pickle (*.pickle);;
+                                                CSV files (*.csv);;
+                                                ''', options=options)
         self.updateField(fileKey)
 
     def updateField(self, fileKey):

@@ -35,6 +35,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             constants.TRAF: None,
         }
         self.uFunc = None
+
         self.initFuncs()
         self.initPlots()
         if auto:
@@ -93,10 +94,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for key in filesMap:
             filePath = filesMap[key]
             logging.debug(f'Try to load {key} file: {filePath}.')
+
+            if filePath.endswith('.pickle'):
+                func = utils.loadPickle(filePath, 'rb')
+                if func is None:
+                    self.error(f'Unable to load {key} function as pickle:\n{filePath}.')
+                self.funcDict[key] = func
+
             points = utils.loadCSV(filePath)
             if points is None:
-                self.error(f'Something gone wrong with {filePath}')
-
+                self.error(f'Unable to load {key} function as csv:\n{filePath}.')
             self.funcDict[key] = num_methods.interpolation.Interpolation(points)
 
     def _dump(self, mode):
@@ -109,6 +116,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def error(self, message):
         logging.error(message)
+        self.message = QtWidgets.QMessageBox.warning(self, "Error", message)
+        self.close()
+        sys.exit()
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

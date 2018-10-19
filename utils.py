@@ -25,8 +25,12 @@ def safe(func):
         if not os.path.isfile(filePath):
             return None
 
-        with open(filePath, mode) as file:
-            return func(file)
+        try:
+            with open(filePath, mode) as file:
+                return func(file)
+        except Exception as e:
+            pass
+
         return None
 
     return wrap

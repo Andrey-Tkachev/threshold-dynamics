@@ -21,4 +21,5 @@ class PlotWidget(FigureCanvas):
         x = data[:, 0].flatten()
         y = data[:, 1].flatten()
         self.ax.plot(x, y, label=label, color=color)
+        self.ax.grid(True)
         self.ax.legend()
