@@ -14,7 +14,10 @@ class Solver(object):
         self.z = z
 
     def solve(self):
-        return Interpolation(np.random.rand((10, 2)))
+        points = []
+        for x in np.arange(0, 10):
+            points.append((x, self.u(x) / (self.z(x) + 1.) + self.s(x - 1.)))
+        return Interpolation(points=points)
 
     def getBetta(self):
         return 42

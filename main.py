@@ -36,7 +36,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.bettaField.setEnabled(auto)
 
         self.initFuncs()
-        self.initPlots()
 
         self.saveS.setFunc(self.funcDict[constants.PLAN])
         self.saveP.setFunc(self.funcDict[constants.PROB])
@@ -57,6 +56,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.bettaField.setText(str(self.solver.getBetta()))
 
+        self.initPlots()
         self.show()
 
     def initFuncs(self):
@@ -70,12 +70,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.uWidget.setLegend('p(w) integral', x_label='y', y_label='U(y)')
 
         self.planWidget.plotData(utils.Tabulate(self.funcDict[constants.PLAN], (0, 10)),
-                                        label='S(t)',
+                                        label='S(t) - plan',
                                         color='blue')
 
         self.planWidget.plotData(utils.Tabulate(self.funcDict[constants.TRAF], (0, 10)),
-                                        label='z(t)',
+                                        label='z(t) - traffic',
                                         color='red')
+
+        self.planWidget.plotData(utils.Tabulate(self.solver.solve(), (0, 10)),
+                                        label='x(t) - solution',
+                                        color='green')
 
         self.probWidget.plotData(utils.Tabulate(self.funcDict[constants.PROB], (0, 10)),
                                         label='p(w)',
