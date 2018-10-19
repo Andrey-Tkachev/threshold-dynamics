@@ -1,6 +1,6 @@
 import os.path
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore, QtGui
 from functools import partial
 
 from ui.initial_window import Ui_InitialWindow
@@ -14,6 +14,10 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
         super().__init__()
         self.nextClass = nextClass
         self.setupUi(self)
+
+        validator = QtGui.QDoubleValidator(self)
+        locale = QtCore.QLocale("en")
+        validator.setLocale(locale)
 
         self.files = {
             constants.PLAN: None,
@@ -34,24 +38,12 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
         self.openTrafFile.clicked.connect(partial(self.openFileNameDialog,
                                                     fileKey=constants.TRAF))
 
-        self.bettaInitialField.textChanged.connect(partial(self.validate,
-                                                        self.bettaInitialField))
-        self.xInitialField.textChanged.connect(partial(self.validate,
-                                                self.xInitialField))
-        self.yInitialField.textChanged.connect(partial(self.validate,
-                                                self.yInitialField))
-        self.tInitialField.textChanged.connect(partial(self.validate,
-                                                self.tInitialField))
+        self.bettaInitialField.setValidator(validator)
+        self.xInitialField.setValidator(validator)
+        self.yInitialField.setValidator(validator)
+        self.tInitialField.setValidator(validator)
 
         self.autoModeCheckBox.clicked.connect(self.toggleInput)
-
-    def validate(self, obj):
-        text = obj.toPlainText()
-        if not text:
-            return
-
-        if not utils.IsReal(text):
-            obj.setPlainText(text[:-1])
 
     def toggleInput(self):
         notChecked = not self.autoModeCheckBox.isChecked()
@@ -83,8 +75,8 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
     def goNext(self):
         autoMode = self.autoModeCheckBox.isChecked()
         self.nextWindow = self.nextClass(self.files, auto=autoMode,
-                                            betta=self.bettaInitialField.toPlainText(),
-                                            x=self.xInitialField.toPlainText(),
-                                            y=self.yInitialField.toPlainText(),
-                                            t=self.tInitialField.toPlainText())
+                                            betta=self.bettaInitialField.text(),
+                                            x=self.xInitialField.text(),
+                                            y=self.yInitialField.text(),
+                                            t=self.tInitialField.text())
         self.close()

@@ -22,12 +22,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
 
         self.setupUi(self)
-        self.initButtons()
-
-        self.filesMap = filesMap
-        self.firstCrtField.setEnabled(not auto)
-        self.secondCrtField.setEnabled(not auto)
-        self.bettaField.setEnabled(auto)
 
         self.funcDict = {
             constants.PLAN: None,
@@ -36,8 +30,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         }
         self.uFunc = None
 
+        self.filesMap = filesMap
+        self.firstCrtField.setEnabled(not auto)
+        self.secondCrtField.setEnabled(not auto)
+        self.bettaField.setEnabled(auto)
+
         self.initFuncs()
         self.initPlots()
+
+        self.saveS.setFunc(self.funcDict[constants.PLAN])
+        self.saveP.setFunc(self.funcDict[constants.PROB])
+        self.saveZ.setFunc(self.funcDict[constants.TRAF])
+
         if auto:
             x = None
             y = None
@@ -54,10 +58,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.bettaField.setText(str(self.solver.getBetta()))
 
         self.show()
-
-    def initButtons(self):
-        self.saveInterpolation.clicked.connect(partial(self._dump, constants.INTERPOL))
-        self.saveTabulation.clicked.connect(partial(self._dump, constants.TABUL))
 
     def initFuncs(self):
         self._loadFuncs()
@@ -85,26 +85,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                         label='U(y)',
                                         color='green')
 
-        self.probWidget.plotData(utils.Tabulate(self.funcDict[constants.PROB], (0, 10)),
-                                        label='p(w)',
-                                        color='orange')
-
     def _loadFuncs(self):
         filesMap = self.filesMap
         for key in filesMap:
             filePath = filesMap[key]
             logging.debug(f'Try to load {key} file: {filePath}.')
 
+            func = None
             if filePath.endswith('.pickle'):
                 func = utils.loadPickle(filePath, 'rb')
                 if func is None:
                     self.error(f'Unable to load {key} function as pickle:\n{filePath}.')
-                self.funcDict[key] = func
 
-            points = utils.loadCSV(filePath)
-            if points is None:
-                self.error(f'Unable to load {key} function as csv:\n{filePath}.')
-            self.funcDict[key] = num_methods.interpolation.Interpolation(points)
+            else:
+                points = utils.loadCSV(filePath)
+                if points is None:
+                    self.error(f'Unable to load {key} function as csv:\n{filePath}.')
+                func = num_methods.interpolation.Interpolation(points)
+
+            self.funcDict[key] = func
 
     def _dump(self, mode):
         dumpDir = str(QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory"))

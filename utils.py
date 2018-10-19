@@ -76,10 +76,8 @@ def dumpCSV(file, obj, mode='wb'):
     for row in obj:
         writer.writerow(row)
 
-def dumpFunc(func, dumpDir, name, mode):
-    fileNamePref = os.path.join(dumpDir, name)
+def dumpFunc(func, filePath, mode=constants.INTERPOL, rng=None):
     if mode == constants.INTERPOL:
-        dumpPickle(fileNamePref + '.pickle', func, mode='wb')
+        dumpPickle(filePath, func, mode='wb')
     else:
-        dumpCSV(fileNamePref + '.csv', Tabulate(func, (0, 10)), mode='w')
-
+        dumpCSV(filePath, Tabulate(func, rng), mode='w')

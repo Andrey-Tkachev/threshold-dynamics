@@ -3,10 +3,12 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 
+plt.tight_layout()
+
 class PlotWidget(FigureCanvas):
 
     def __init__(self, parent):
-        figure = Figure(dpi=100)
+        figure = Figure(dpi=80)
         super().__init__(figure)
         self.ax = self.figure.add_subplot(111)
         self.setParent(parent)
