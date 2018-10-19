@@ -17,5 +17,8 @@ class PlotWidget(FigureCanvas):
         self.ax.set_ylabel(y_label)
 
     def plotData(self, data, label=None, color='red'):
-        self.ax.plot(data, 'r-', label=label, color=color)
+        data = np.array(data)
+        x = data[:, 0].flatten()
+        y = data[:, 1].flatten()
+        self.ax.plot(x, y, label=label, color=color)
         self.ax.legend()

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>235</height>
+    <width>500</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,7 +22,7 @@
   <property name="minimumSize">
    <size>
     <width>500</width>
-    <height>210</height>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -55,7 +55,7 @@
    <property name="minimumSize">
     <size>
      <width>0</width>
-     <height>150</height>
+     <height>400</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -88,7 +88,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Initial parametrs</string>
+         <string>План показов S(t)</string>
         </property>
        </widget>
       </item>
@@ -98,12 +98,12 @@
          <enum>QLayout::SetMinimumSize</enum>
         </property>
         <item>
-         <widget class="QLineEdit" name="displayFileName">
+         <widget class="QLineEdit" name="displayPlanFile">
           <property name="enabled">
            <bool>true</bool>
           </property>
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -111,7 +111,7 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>30</height>
+            <height>0</height>
            </size>
           </property>
           <property name="cursor">
@@ -126,16 +126,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="openFileButton">
+         <widget class="QPushButton" name="openPlanFile">
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>30</height>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>70</width>
+            <width>16777215</width>
             <height>16777215</height>
            </size>
           </property>
@@ -146,7 +146,65 @@
            </size>
           </property>
           <property name="text">
-           <string>open file</string>
+           <string>Открыть</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Распределение аудитории p(w)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLineEdit" name="displayProbFile">
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="openProbFile">
+          <property name="text">
+           <string>Открыть</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Функция траффика z(t)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="displayTrafficFile">
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="openTrafFile">
+          <property name="text">
+           <string>Открыть</string>
           </property>
          </widget>
         </item>
@@ -163,7 +221,7 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Auto mode</string>
+       <string>Автоматический режим</string>
       </property>
      </widget>
     </item>
@@ -205,8 +263,17 @@
         <property name="maximumSize">
          <size>
           <width>15005</width>
-          <height>40</height>
+          <height>30</height>
          </size>
+        </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhFormattedNumbersOnly</set>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
+        </property>
+        <property name="plainText">
+         <string>0.0</string>
         </property>
        </widget>
       </item>
@@ -231,8 +298,17 @@
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>40</height>
+          <height>30</height>
          </size>
+        </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhFormattedNumbersOnly</set>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
+        </property>
+        <property name="plainText">
+         <string>0.0</string>
         </property>
        </widget>
       </item>
@@ -257,8 +333,55 @@
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>40</height>
+          <height>30</height>
          </size>
+        </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhFormattedNumbersOnly</set>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
+        </property>
+        <property name="plainText">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>T</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="tInitialField">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhFormattedNumbersOnly</set>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
+        </property>
+        <property name="plainText">
+         <string>10.0</string>
         </property>
        </widget>
       </item>
@@ -282,6 +405,9 @@
     </item>
     <item>
      <widget class="QDialogButtonBox" name="okDialog">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
         <horstretch>0</horstretch>
