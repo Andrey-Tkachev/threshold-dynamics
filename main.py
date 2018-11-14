@@ -61,7 +61,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def initFuncs(self):
         self._loadFuncs()
-        integral = num_methods.integral.Integral(self.funcDict[constants.PROB])
+        integral = num_methods.integral.TrapzIntegral(self.funcDict[constants.PROB])
         self.uFunc = num_methods.interpolation.Interpolation(utils.Tabulate(integral, (0, 10)))
 
     def initPlots(self):
@@ -100,7 +100,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 func = utils.loadPickle(filePath, 'rb')
                 if func is None:
                     self.error(f'Unable to load {key} function as pickle:\n{filePath}.')
-
             else:
                 points = utils.loadCSV(filePath)
                 if points is None:
