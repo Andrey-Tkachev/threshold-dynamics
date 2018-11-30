@@ -1,6 +1,6 @@
 import numpy as np
 
-from .interpolation import Interpolation
+from .interpolation import SplineInterpolation
 
 class Solver(object):
 
@@ -14,10 +14,10 @@ class Solver(object):
         self.z = z
 
     def solve(self):
-        points = []
+        grid = []
         for x in np.arange(0, 10):
-            points.append((x, self.u(x) / (self.z(x) + 1.) + self.s(x - 1.)))
-        return Interpolation(points=points)
+            grid.append((x, self.u(x) / (self.z(x) + 10.) + self.s(x - 1.)))
+        return SplineInterpolation(grid=grid)
 
     def getBetta(self):
         return 42

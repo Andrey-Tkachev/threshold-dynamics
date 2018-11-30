@@ -71,6 +71,10 @@ def dumpPickle(file, obj, mode='wb'):
     pickle.dump(obj, file)
 
 @safe_dir
+def dumpJson(file, obj, mode='wb'):
+    json.dump(obj, file)
+
+@safe_dir
 def dumpCSV(file, obj, mode='wb'):
     writer = csv.writer(file, delimiter=',')
     for row in obj:
@@ -78,6 +82,6 @@ def dumpCSV(file, obj, mode='wb'):
 
 def dumpFunc(func, filePath, mode=constants.INTERPOL, rng=None):
     if mode == constants.INTERPOL:
-        dumpPickle(filePath, func, mode='wb')
+        dumpJson(filePath, func.dump_to_dict(), mode='w')
     else:
         dumpCSV(filePath, Tabulate(func, rng), mode='w')

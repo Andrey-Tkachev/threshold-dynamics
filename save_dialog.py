@@ -27,10 +27,12 @@ class SaveDialog(QtWidgets.QMainWindow, Ui_SaveDialog):
     def openFile(self):
         options = QtWidgets.QFileDialog.Options()
         fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,
-                                                'Choose file:',
-                                                '',
+                                                'backup',
                                                 '''
                                                 All files (*)
+                                                ''',
+                                                '''
+                                                *.json
                                                 ''', options=options)
         self.fileName = fileName
         self.dumpFunc()

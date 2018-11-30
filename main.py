@@ -62,30 +62,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def initFuncs(self):
         self._loadFuncs()
         integral = num_methods.integral.TrapzIntegral(self.funcDict[constants.PROB])
-        self.uFunc = num_methods.interpolation.Interpolation(utils.Tabulate(integral, (0, 10)))
+        self.uFunc = num_methods.interpolation.SplineInterpolation(utils.Tabulate(integral, (0, 10)))
 
     def initPlots(self):
         self.planWidget.setLegend('Plan', x_label='t', y_label='users')
         self.probWidget.setLegend('Probability', x_label='w', y_label='p(w)')
         self.uWidget.setLegend('p(w) integral', x_label='y', y_label='U(y)')
 
-        self.planWidget.plotData(utils.Tabulate(self.funcDict[constants.PLAN], (0, 10)),
+        self.planWidget.plotData(utils.Tabulate(self.funcDict[constants.PLAN], (0, 10, 0.1)),
                                         label='S(t) - plan',
                                         color='blue')
 
-        self.planWidget.plotData(utils.Tabulate(self.funcDict[constants.TRAF], (0, 10)),
+        self.planWidget.plotData(utils.Tabulate(self.funcDict[constants.TRAF], (0, 10, 0.1)),
                                         label='z(t) - traffic',
                                         color='red')
 
-        self.planWidget.plotData(utils.Tabulate(self.solver.solve(), (0, 10)),
+        self.planWidget.plotData(utils.Tabulate(self.solver.solve(), (0, 10, 0.1)),
                                         label='x(t) - solution',
                                         color='green')
 
-        self.probWidget.plotData(utils.Tabulate(self.funcDict[constants.PROB], (0, 10)),
+        self.probWidget.plotData(utils.Tabulate(self.funcDict[constants.PROB], (-3, 3, 0.1)),
                                         label='p(w)',
                                         color='orange')
 
-        self.uWidget.plotData(utils.Tabulate(self.uFunc, (0, 10)),
+        self.uWidget.plotData(utils.Tabulate(self.uFunc, (0, 10, 0.1)),
                                         label='U(y)',
                                         color='green')
 
@@ -100,11 +100,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 func = utils.loadPickle(filePath, 'rb')
                 if func is None:
                     self.error(f'Unable to load {key} function as pickle:\n{filePath}.')
+            elif filePath.endswith('.json'):
+                jsn = utils.loadJson(filePath, 'r')
+                if jsn is None:
+                    self.error(f'Unable to load {key} function as json:\n{filePath}.')
+                func = num_methods.interpolation.SplineInterpolation(None).load_from_dict(jsn)
             else:
-                points = utils.loadCSV(filePath)
-                if points is None:
+                grid = utils.loadCSV(filePath)
+                if grid is None:
                     self.error(f'Unable to load {key} function as csv:\n{filePath}.')
-                func = num_methods.interpolation.Interpolation(points)
+                func = num_methods.interpolation.SplineInterpolation(grid)
 
             self.funcDict[key] = func
 
