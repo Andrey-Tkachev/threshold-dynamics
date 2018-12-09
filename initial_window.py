@@ -20,7 +20,7 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
         validator.setLocale(locale)
 
         self.files = {
-            constants.PLAN: None,
+            constants.PROB: None,
         }
 
         self.fileKey2textField = {
@@ -39,6 +39,8 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
                                                     fileKey=constants.TRAF))
 
         self.bettaInitialField.setValidator(validator)
+        self.betta0InitialField.setValidator(validator)
+        self.betta1InitialField.setValidator(validator)
         self.xInitialField.setValidator(validator)
         self.yInitialField.setValidator(validator)
         self.tInitialField.setValidator(validator)
@@ -49,7 +51,8 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
         notChecked = not self.autoModeCheckBox.isChecked()
         self.bettaInitialField.setEnabled(notChecked)
         self.xInitialField.setEnabled(notChecked)
-        self.yInitialField.setEnabled(notChecked)
+        self.betta0InitialField.setEnabled(not notChecked)
+        self.betta1InitialField.setEnabled(not notChecked)
 
     def openFileNameDialog(self, fileKey):
         options = QtWidgets.QFileDialog.Options()
@@ -58,6 +61,7 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
                                                 'Load function:',
                                                 '',
                                                 '''
+                                                Json (*.json);;
                                                 Pickle (*.pickle);;
                                                 CSV files (*.csv);;
                                                 ''', options=options)
@@ -68,15 +72,19 @@ class InitialWindow(QtWidgets.QMainWindow, Ui_InitialWindow):
         if text is not None:
             self.fileKey2textField[fileKey].setText(text)
         for key in self.fileKey2textField:
-            if key not in self.files or not os.path.isfile(self.files[key]):
+            if (key not in self.files
+                            or self.files[key] is None
+                            or not os.path.isfile(self.files[key])):
                 return
         self.okDialog.setEnabled(True)
 
     def goNext(self):
         autoMode = self.autoModeCheckBox.isChecked()
         self.nextWindow = self.nextClass(self.files, auto=autoMode,
-                                            betta=self.bettaInitialField.text(),
-                                            x=self.xInitialField.text(),
-                                            y=self.yInitialField.text(),
-                                            t=self.tInitialField.text())
+                                            betta=float(self.bettaInitialField.text()),
+                                            betta0=float(self.betta0InitialField.text()),
+                                            betta1=float(self.betta1InitialField.text()),
+                                            x=float(self.xInitialField.text()),
+                                            y=float(self.yInitialField.text()),
+                                            T=float(self.tInitialField.text()))
         self.close()

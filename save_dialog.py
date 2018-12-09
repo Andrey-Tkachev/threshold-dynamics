@@ -29,10 +29,8 @@ class SaveDialog(QtWidgets.QMainWindow, Ui_SaveDialog):
         fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self,
                                                 'backup',
                                                 '''
-                                                All files (*)
-                                                ''',
-                                                '''
-                                                *.json
+                                                All files (*);;
+                                                Json (*.json);;
                                                 ''', options=options)
         self.fileName = fileName
         self.dumpFunc()

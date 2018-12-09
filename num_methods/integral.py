@@ -4,7 +4,7 @@ from functools import partial
 class Integral(object):
     _prec = None
 
-    def __init__(self, func, nodes_num: int = 50000):
+    def __init__(self, func, nodes_num: int = 1000):
         """
         :param func: function to inetegrate with overloaded operator()
         :param step: step of the partition
@@ -23,7 +23,7 @@ class Integral(object):
     def _proc(self, begin, end, grid):
         raise NotImplemented
 
-    def __call__(self, end: float, begin: float = 0.0, grid = None) -> float:
+    def __call__(self, begin: float, end: float = 1.0,  grid = None) -> float:
         """
         :param end: integrate func from ? to end.
         :param begin: integrate func from begin to end.

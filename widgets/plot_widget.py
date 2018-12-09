@@ -8,8 +8,8 @@ plt.tight_layout()
 class PlotWidget(FigureCanvas):
 
     def __init__(self, parent):
-        figure = Figure(dpi=80)
-        super().__init__(figure)
+        self.figure = Figure(dpi=70)
+        super().__init__(self.figure)
         self.ax = self.figure.add_subplot(111)
         self.setParent(parent)
 
@@ -25,3 +25,4 @@ class PlotWidget(FigureCanvas):
         self.ax.plot(x, y, label=label, color=color)
         self.ax.grid(True)
         self.ax.legend()
+        self.figure.canvas.draw()
