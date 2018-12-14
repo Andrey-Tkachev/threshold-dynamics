@@ -103,7 +103,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def calcWeightFuncs(self, progress_callback):
         progress_callback.emit('Calculating U(y) function')
-        integral = num_methods.integral.TrapzIntegral(self.correctProb, nodes_num=5000)
+        integral = num_methods.integral.TrapzIntegral(self.correctProb, nodes_num=1000)
         uFunc = num_methods.interpolation.SplineInterpolation(
             utils.Tabulate(
                 integral,

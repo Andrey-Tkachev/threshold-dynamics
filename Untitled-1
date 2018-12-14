@@ -1,0 +1,62 @@
+POST /v3/ad?uuid=930b1feda36238ad4b6d0f9ac54820b8 HTTP/1.1
+User-Agent: com.yandex.mobile.metrica.ads.sdk/2.75.14(Samsung SM-J510FN; Android 7.1.1)
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Host: mobile.yandexadexchange.net
+Accept-Encoding: gzip
+X-Forwarded-Proto: https
+X-Real-IP: 195.211.23.4
+X-Forwarded-For: 195.211.23.4
+X-Nanpu-Uuid: 930b1feda36238ad4b6d0f9ac54820b8
+X-L7-EXP: true
+X-Yandex-ExpSplitParams: eyJyIjowLCJzIjoibmFucHUiLCJkIjoidG91Y2giLCJtIjoiYW5kcm9pZCIsImIiOiJVbmtub3duIiwiaSI6dHJ1ZX0=
+X-Yandex-LogstatUID: 3711177211544102450
+X-Yandex-ExpConfigVersion: 14650
+X-Yandex-ExpBoxes: 102450,0,92;102710,0,79;102654,0,8;102040,0,26;107149,0,22;107050,0,65;108793,0,80;108786,0,9;106615,0,60
+X-Yandex-ExpFlags: W3siSEFORExFUiI6ICJSRVBPUlQiLCAiVEVTVElEIjogWyIxMDI0NTAiXSwgIkNPTlRFWFQiOiB7Ik1BSU4iOiB7IkFUT01fUFJPWFkiOiB7InJlbGV2IjogWyJhdG9tX3NtYXJ0X2Jhbm5lcl90ZXN0LWlkcz0xMDI0NTA7YXRvbV9wcm9tb2hlYWRlcl90ZXN0LWlkcz0xMDI0NTA7YXRvbV9wcm9tb2Zvb3Rlcl90ZXN0LWlkcz0xMDI0NTA7Il19LCAiUkVQT1JUIjogeyJ5YWJzX2Rpc3RyX2RpcmVjdF9wYWdlIjogIjI2NzE1MiIsICJ5YWJzX2Rpc3RyIjogMSwgInRvdWNoX3NtYXJ0YmFubmVyX2F0b21fdG9fYmsiOiAxLCAidG91Y2hfc2Nyb2xsdXBfYXRvbV90b19iayI6IDF9fX19XQ==,W3siSEFORExFUiI6ICJSRVBPUlQiLCAiVEVTVElEIjogWyIxMDI3MTAiXSwgIkNPTlRFWFQiOiB7Ik1BSU4iOiB7fX19XQ==,W3siSEFORExFUiI6ICJOQU5QVSIsICJURVNUSUQiOiBbMTAyNjU0XSwgIkNPTlRFWFQiOiB7Ik1BSU4iOiB7Ik5BTlBVIjogeyJFeHBlcmltZW50TmFtZSI6IDB9fX19XQ==,W3siSEFORExFUiI6ICJOQU5QVSIsICJURVNUSUQiOiBbMTAyMDQwXSwgIkNPTlRFWFQiOiB7Ik1BSU4iOiB7Ik5BTlBVIjogeyJFeHBlcmltZW50TmFtZSI6IDB9fX19XQ==,W3siSEFORExFUiI6IlNVUCIsIkNPTlRFWFQiOnsiU1VQIjp7ImZsYWdzIjpbInNpbGVudC1wdXNoIl19fSwiQ09ORElUSU9OIjoiIn1d,W3siSEFORExFUiI6IlNVUCIsIkNPTlRFWFQiOnsiU1VQIjp7fX0sIkNPTkRJVElPTiI6IiJ9XQ==,W3siSEFORExFUiI6IlNVUCIsIkNPTlRFWFQiOnsiU1VQIjp7fX0sIkNPTkRJVElPTiI6IiJ9XQ==,W3siSEFORExFUiI6IlNVUCIsIkNPTlRFWFQiOnsiU1VQIjp7InB1c2giOlsie1wiYnJvd3Nlcl9mZWF0dXJlc1wiOiB7XCJyZXF1aXJlSW50ZXJhY3Rpb25cIjp0cnVlfX0iXX19LCJDT05ESVRJT04iOiIifV0=,W3siSEFORExFUiI6IlNVUCIsIkNPTlRFWFQiOnsiU1VQIjp7fX0sIkNPTkRJVElPTiI6IiJ9XQ==
+Content-Length: 861
+
+ad_unit_id=adf-258560%2F962593
+uuid=930b1feda36238ad4b6d0f9ac54820b8
+width=320
+height=50
+orientation=portrait
+screen_width=360
+screen_height=640
+scalefactor=2.0
+mcc=250
+mnc=99
+ad_type=banner
+network_type=WIFI
+cellid=22749
+lac=65004
+wifi=54%3A35%3A30%3A5b%3Af8%3Af0%2C-47%3B88%3Ad7%3Af6%3A80%3Ac0%3Ad0%2C-54%3B1c%3A74%3A0d%3A80%3A36%3A94%2C-56
+dnt=0
+google_aid=cd2dba63-8065-40cd-9dfc-c095ec39021d
+battery_charge=100
+session_random=2953544844
+charset=UTF-8
+device_type=phone
+os_name=android
+os_version=7.1.1
+manufacturer=samsung
+model=SM-J510FN
+locale=ru_RU
+app_id=ru.mamba.client
+app_version=5256
+app_version_name=3.85.0%20(5256_e269ac7d)
+deviceid=e323e4a1e4374e9d4760baf14157a3e5
+screen_dpi=320
+sdk_version=2.75
+adf_p1=cctyv
+adf_pdh=
+adf_pw=
+adf_p2=fkbd
+adf_ownerid=258560
+adf_prr=
+adf_pdw=
+adf_pv=
+adf_pt=b
+adf_pd=
+lat=55.76257342
+lon=37.55434611
+precision=51

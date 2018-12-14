@@ -16,9 +16,11 @@ class CauchySolver(object):
 
         self._f = functions
 
-    def solve(self, init_valuess, T: float, h=0.0001):
+    def solve(self, init_valuess, T: float, h=0.0001, constrains=None):
         """
             init_values: array of init values, |funcs| = |init_values|
+            h: step of the method
+            constraints: n-len array of none or tuples with constraints
 
             returns: nodes, array |funcs| x |T / h|, grid of result funcs by rows in nodes h * row_ind
         """
@@ -44,6 +46,11 @@ class CauchySolver(object):
             ])
 
             iv = iv + 1 / 6. * (k1 + 2. * k2 + 2. * k3 + k4)
+            if constrains is not None:
+                for i in range(len(iv)):
+                    if constrains[i] is not None:
+                        iv[i] = min(max(iv[i], constrains[i][0]), constrains[i][1])
+
             answer_values = np.vstack((answer_values, iv))
 
         return ts, [row.flatten() for row in answer_values.T]
@@ -85,7 +92,7 @@ class Solver(object):
         if not self.auto:
             self.log('Solving Cauchy')
         cauchy = CauchySolver(funcs)
-        grid, solutions = cauchy.solve(initials, self.t)
+        grid, solutions = cauchy.solve(initials, self.t, constrains=[None, (0, 1)])
 
         if not self.auto:
             self.log('Interpolate results')

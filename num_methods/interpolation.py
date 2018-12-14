@@ -45,7 +45,7 @@ class SplineInterpolation(object):
 
         A = np.zeros(N - 1)
         B = np.zeros(N - 1)
-        C = np.zeros(N - 1)  # equals A
+        C = np.zeros(N - 1)
         D = np.zeros(N - 1)
 
         for i in range(N - 1):

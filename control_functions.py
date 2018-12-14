@@ -7,7 +7,7 @@ class CorrectionFunction(object):
         self.betta = betta
 
     def __call__(self, z, x, S):
-        return (x - S) * self.betta + (-(z - S) ** self.betta) ** (x < S)
+        return (x - S) if x - S < self.betta else (x - S) ** 2.0 * (-1 if x < S else 1)
 
 class LossFunction(object):
 
